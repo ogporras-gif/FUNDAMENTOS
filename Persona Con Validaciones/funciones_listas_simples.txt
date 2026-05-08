@@ -1,0 +1,231 @@
+
+//================ FUNCIONES PARA LISTAS SIMPLES =================
+
+int Lista::totalPersonas() {
+
+    Nodo* aux = cabeza;
+
+    int contador = 0;
+
+    while (aux != NULL) {
+
+        contador++;
+
+        aux = aux->siguiente;
+    }
+
+    return contador;
+}
+
+void Lista::mostrarProvincia(string codigo) {
+
+    Nodo* aux = cabeza;
+
+    while (aux != NULL) {
+
+        string ced = aux->dato.getCedula();
+
+        string cod = "";
+
+        cod = cod + *(ced.begin());
+        cod = cod + *(ced.begin() + 1);
+
+        if (cod == codigo) {
+
+            cout << aux->dato.getNombre()
+                 << " - "
+                 << aux->dato.getCedula()
+                 << endl;
+        }
+
+        aux = aux->siguiente;
+    }
+}
+
+void Lista::contarGenero() {
+
+    Nodo* aux = cabeza;
+
+    int hombres = 0;
+    int mujeres = 0;
+
+    while (aux != NULL) {
+
+        string ced = aux->dato.getCedula();
+
+        int numero;
+
+        numero =
+        *(ced.begin() + 8) - '0';
+
+        if (numero % 2 == 0) {
+
+            mujeres++;
+        }
+
+        else {
+
+            hombres++;
+        }
+
+        aux = aux->siguiente;
+    }
+
+    cout << "Hombres: "
+         << hombres
+         << endl;
+
+    cout << "Mujeres: "
+         << mujeres
+         << endl;
+}
+
+void Lista::buscarNombre(string nombre) {
+
+    Nodo* aux = cabeza;
+
+    while (aux != NULL) {
+
+        if (aux->dato.getNombre() == nombre) {
+
+            cout << "Nombre: "
+                 << aux->dato.getNombre()
+                 << endl;
+
+            cout << "Cedula: "
+                 << aux->dato.getCedula()
+                 << endl;
+        }
+
+        aux = aux->siguiente;
+    }
+}
+
+void Lista::primeraPersona() {
+
+    if (cabeza != NULL) {
+
+        cout << "Nombre: "
+             << cabeza->dato.getNombre()
+             << endl;
+
+        cout << "Cedula: "
+             << cabeza->dato.getCedula()
+             << endl;
+    }
+}
+
+void Lista::ultimaPersona() {
+
+    if (cabeza == NULL) {
+        return;
+    }
+
+    Nodo* aux = cabeza;
+
+    while (aux->siguiente != NULL) {
+
+        aux = aux->siguiente;
+    }
+
+    cout << "Nombre: "
+         << aux->dato.getNombre()
+         << endl;
+
+    cout << "Cedula: "
+         << aux->dato.getCedula()
+         << endl;
+}
+
+int Lista::sumaCedulas() {
+
+    Nodo* aux = cabeza;
+
+    int suma = 0;
+
+    while (aux != NULL) {
+
+        string ced = aux->dato.getCedula();
+
+        int i = 0;
+
+        while (i < ced.length()) {
+
+            suma =
+            suma
+            +
+            (*(ced.begin() + i) - '0');
+
+            i++;
+        }
+
+        aux = aux->siguiente;
+    }
+
+    return suma;
+}
+
+void Lista::eliminarTodo() {
+
+    Nodo* aux;
+
+    while (cabeza != NULL) {
+
+        aux = cabeza;
+
+        cabeza = cabeza->siguiente;
+
+        delete aux;
+    }
+
+    guardarArchivo();
+
+    cout << "Lista eliminada\n";
+}
+
+void Lista::cedulasPares() {
+
+    Nodo* aux = cabeza;
+
+    while (aux != NULL) {
+
+        string ced = aux->dato.getCedula();
+
+        int ultimo;
+
+        ultimo =
+        *(ced.end() - 1) - '0';
+
+        if (ultimo % 2 == 0) {
+
+            cout << aux->dato.getNombre()
+                 << " - "
+                 << ced
+                 << endl;
+        }
+
+        aux = aux->siguiente;
+    }
+}
+
+void Lista::invertirLista() {
+
+    Nodo* anterior = NULL;
+    Nodo* actual = cabeza;
+    Nodo* siguiente;
+
+    while (actual != NULL) {
+
+        siguiente = actual->siguiente;
+
+        actual->siguiente = anterior;
+
+        anterior = actual;
+
+        actual = siguiente;
+    }
+
+    cabeza = anterior;
+
+    guardarArchivo();
+}

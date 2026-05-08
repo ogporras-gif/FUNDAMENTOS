@@ -1,0 +1,26 @@
+# depslib dependency file v1.0
+1778123928 source:c:\users\home\desktop\fundamentos\persona\lista.cpp
+	"Lista.h"
+	<iostream>
+	<fstream>
+
+1778123928 c:\users\home\desktop\fundamentos\persona\lista.h
+	"Nodo.h"
+
+1778122406 c:\users\home\desktop\fundamentos\persona\nodo.h
+	"Persona.h"
+
+1778122406 c:\users\home\desktop\fundamentos\persona\persona.h
+	<iostream>
+
+1778123928 source:c:\users\home\desktop\fundamentos\persona\main.cpp
+	<iostream>
+	"Lista.h"
+
+1778122406 source:c:\users\home\desktop\fundamentos\persona\persona.cpp
+	"Persona.h"
+	<cctype>
+
+1778122406 source:c:\users\home\desktop\fundamentos\persona\nodo.cpp
+	"Nodo.h"
+

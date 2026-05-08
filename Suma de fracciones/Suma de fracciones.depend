@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1776151823 source:c:\users\home\desktop\fundamentos\suma de fracciones\main.cpp
+	<iostream>
+	"Fraccion.h"
+	"Operaciones.h"
+
+1776151800 c:\users\home\desktop\fundamentos\suma de fracciones\fraccion.h
+	<iostream>
+
+1776151813 c:\users\home\desktop\fundamentos\suma de fracciones\operaciones.h
+	"Fraccion.h"
+

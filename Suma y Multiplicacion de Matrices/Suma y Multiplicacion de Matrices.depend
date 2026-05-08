@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1776829093 source:c:\users\home\desktop\fundamentos\suma y multiplicacion de matrices\main.cpp
+	<iostream>
+	"Matriz.h"
+	"Operacion.h"
+
+1776824132 c:\users\home\desktop\fundamentos\suma y multiplicacion de matrices\matriz.h
+
+1776829098 c:\users\home\desktop\fundamentos\suma y multiplicacion de matrices\operacion.h
+	"Matriz.h"
+
+1776829504 source:c:\users\home\desktop\fundamentos\suma y multiplicacion de matrices\matriz.cpp
+	"Matriz.h"
+	<stdlib.h>
+
+1776829098 source:c:\users\home\desktop\fundamentos\suma y multiplicacion de matrices\operacion.cpp
+	"Operacion.h"
+	<iostream>
+

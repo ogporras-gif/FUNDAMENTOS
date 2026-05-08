@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1776392853 source:c:\users\home\desktop\fundamentos\suma de matrices\main.cpp
+	<iostream>
+	"Matriz.h"
+
+1776394365 c:\users\home\desktop\fundamentos\suma de matrices\matriz.h
+	<iostream>
+	"Matriz.cpp"
+
+1776394847 c:\users\home\desktop\fundamentos\suma de matrices\matriz.cpp
+	"Matriz.h"
+	<iostream>
+

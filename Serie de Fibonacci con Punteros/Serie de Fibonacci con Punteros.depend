@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1776158499 source:c:\users\home\desktop\fundamentos\serie de fibonacci con punteros\main.cpp
+	<iostream>
+	"Fibonacci.h"
+	"OperacionesFibonacci.h"
+
+1776158700 c:\users\home\desktop\fundamentos\serie de fibonacci con punteros\fibonacci.h
+	<iostream>
+
+1776158475 c:\users\home\desktop\fundamentos\serie de fibonacci con punteros\operacionesfibonacci.h
+	<iostream>
+	"Fibonacci.h"
+

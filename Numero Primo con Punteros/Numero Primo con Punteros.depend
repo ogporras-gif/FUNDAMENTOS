@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1776156148 source:c:\users\home\desktop\fundamentos\numero primo con punteros\main.cpp
+	<iostream>
+	"Primo.h"
+	"OperacionesPrimo.h"
+
+1776153930 c:\users\home\desktop\fundamentos\numero primo con punteros\primo.h
+	<iostream>
+
+1776153959 c:\users\home\desktop\fundamentos\numero primo con punteros\operacionesprimo.h
+	"Primo.h"
+	<cmath>
+

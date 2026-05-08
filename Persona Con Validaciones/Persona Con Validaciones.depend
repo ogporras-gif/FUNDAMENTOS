@@ -1,0 +1,25 @@
+# depslib dependency file v1.0
+1778134558 source:c:\users\home\desktop\fundamentos\persona con validaciones\lista.cpp
+	"Lista.h"
+	<conio.h>
+
+1778132051 c:\users\home\desktop\fundamentos\persona con validaciones\lista.h
+	"Nodo.h"
+	<fstream>
+	<regex>
+
+1778128359 c:\users\home\desktop\fundamentos\persona con validaciones\nodo.h
+	"Persona.h"
+
+1778128059 c:\users\home\desktop\fundamentos\persona con validaciones\persona.h
+	<iostream>
+
+1778134558 source:c:\users\home\desktop\fundamentos\persona con validaciones\main.cpp
+	"Lista.h"
+
+1778128393 source:c:\users\home\desktop\fundamentos\persona con validaciones\nodo.cpp
+	"Nodo.h"
+
+1778128210 source:c:\users\home\desktop\fundamentos\persona con validaciones\persona.cpp
+	"Persona.h"
+

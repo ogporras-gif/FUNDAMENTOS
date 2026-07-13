@@ -1,0 +1,16 @@
+SOLUCION 1
+
+ .  .  Q  . 
+ Q  .  .  . 
+ .  .  .  Q 
+ .  Q  .  . 
+
+SOLUCION 2
+
+ .  Q  .  . 
+ .  .  .  Q 
+ Q  .  .  . 
+ .  .  Q  . 
+
+
+TOTAL DE SOLUCIONES: 2

@@ -1,0 +1,14 @@
+SOLUCIONES PARA 4 REINAS
+
+--- Solucion #1 ---
+. Q . . 
+. . . Q 
+Q . . . 
+. . Q . 
+
+--- Solucion #2 ---
+. . Q . 
+Q . . . 
+. . . Q 
+. Q . . 
+

@@ -4,10 +4,9 @@
 #include <cmath>
 #include <limits>
 #include <stack>
+#include <stdexcept>
 
 using namespace std;
-
-const double PI = 3.14159265358979323846;
 
 bool esOperadorBinario(const string& token) {
     return token == "+" || token == "-" || token == "*" || token == "/" || token == "^";
@@ -102,7 +101,7 @@ string convertirInfijoARPN(const string& infijo) {
 double aplicarOperacionBinaria(double a, double b, const string& op) {
     if (op == "+") return a + b;
     if (op == "-") return a - b;
-    if (op == "*" || op == "x") return a * b;
+    if (op == "*") return a * b;
     if (op == "/") {
         if (b == 0) throw runtime_error("Error matematico: Division por cero.");
         return a / b;
@@ -122,30 +121,85 @@ double aplicarFuncionUnaria(double x, const string& func) {
     return 0;
 }
 
-double evaluarRPN(const string& expresion) {
-    stack<double> pila;
-    stringstream ss(expresion);
-    string token;
+class Nodo {
+public:
+    string dato;
+    Nodo* izquierdo;
+    Nodo* derecho;
+    Nodo(string val) {
+        dato = val;
+        izquierdo = nullptr;
+        derecho = nullptr;
+    }
+};
 
+Nodo* construirArbol(const string& rpn) {
+    stack<Nodo*> pila;
+    stringstream ss(rpn);
+    string token;
     while (ss >> token) {
-        double numeroConvertido = 0;
+        Nodo* nuevo = new Nodo(token);
         if (esOperadorBinario(token)) {
             if (pila.size() < 2) throw runtime_error("Error de sintaxis en RPN.");
-            double operando2 = pila.top(); pila.pop();
-            double operando1 = pila.top(); pila.pop();
-            pila.push(aplicarOperacionBinaria(operando1, operando2, token));
-        } 
-        else if (esFuncionUnaria(token)) {
+            nuevo->derecho = pila.top(); pila.pop();
+            nuevo->izquierdo = pila.top(); pila.pop();
+            pila.push(nuevo);
+        } else if (esFuncionUnaria(token)) {
             if (pila.empty()) throw runtime_error("Error de sintaxis en RPN.");
-            double operando = pila.top(); pila.pop();
-            pila.push(aplicarFuncionUnaria(operando, token));
-        } 
-        else if (convertirANumero(token, numeroConvertido)) {
-            pila.push(numeroConvertido);
+            nuevo->izquierdo = pila.top(); pila.pop();
+            pila.push(nuevo);
+        } else {
+            pila.push(nuevo);
         }
     }
     if (pila.size() != 1) throw runtime_error("Error de sintaxis en RPN.");
     return pila.top();
+}
+
+void preorden(Nodo* raiz) {
+    if (raiz == nullptr) return;
+    cout << raiz->dato << " ";
+    preorden(raiz->izquierdo);
+    preorden(raiz->derecho);
+}
+
+void inorden(Nodo* raiz) {
+    if (raiz == nullptr) return;
+    if (raiz->izquierdo || raiz->derecho) cout << "( ";
+    inorden(raiz->izquierdo);
+    cout << raiz->dato << " ";
+    inorden(raiz->derecho);
+    if (raiz->izquierdo || raiz->derecho) cout << ") ";
+}
+
+void postorden(Nodo* raiz) {
+    if (raiz == nullptr) return;
+    postorden(raiz->izquierdo);
+    postorden(raiz->derecho);
+    cout << raiz->dato << " ";
+}
+
+double evaluarArbol(Nodo* raiz) {
+    if (raiz == nullptr) return 0;
+    if (!esOperadorBinario(raiz->dato) && !esFuncionUnaria(raiz->dato)) {
+        double val;
+        convertirANumero(raiz->dato, val);
+        return val;
+    }
+    if (esFuncionUnaria(raiz->dato)) {
+        double valIzq = evaluarArbol(raiz->izquierdo);
+        return aplicarFuncionUnaria(valIzq, raiz->dato);
+    }
+    double valIzq = evaluarArbol(raiz->izquierdo);
+    double valDer = evaluarArbol(raiz->derecho);
+    return aplicarOperacionBinaria(valIzq, valDer, raiz->dato);
+}
+
+void liberarArbol(Nodo* raiz) {
+    if (raiz == nullptr) return;
+    liberarArbol(raiz->izquierdo);
+    liberarArbol(raiz->derecho);
+    delete raiz;
 }
 
 int main() {
@@ -176,8 +230,24 @@ int main() {
                 cout << ">>> Expresion en Polaca Inversa (RPN): [ " << rpn << " ]\n";
                 cout << "--------------------------------------------------------\n";
                 
-                double resultado = evaluarRPN(rpn);
+                Nodo* raiz = construirArbol(rpn);
+                
+                cout << ">>> Recorrido Prefijo: ";
+                preorden(raiz);
+                cout << "\n";
+                
+                cout << ">>> Recorrido Infijo: ";
+                inorden(raiz);
+                cout << "\n";
+                
+                cout << ">>> Recorrido Posfijo: ";
+                postorden(raiz);
+                cout << "\n";
+                
+                double resultado = evaluarArbol(raiz);
                 cout << ">>> Resultado Numerico Final: " << resultado << "\n\n";
+                
+                liberarArbol(raiz);
             } 
             catch (const runtime_error& e) {
                 cout << "\n[ERROR] " << e.what() << "\n\n";
